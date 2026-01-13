@@ -946,12 +946,40 @@ function resetApp() {
         if (lockOverlay) lockOverlay.style.display = 'flex';
         return;
     }
+    
+    // Clear UI Views
     resultDashboard.classList.add('hidden');
     dropZone.classList.remove('hidden');
+    
+    // Reset Inputs
     chartInput.value = '';
     uploadedImage.src = '';
+    
+    // Reset Dynamic Text
     patternList.innerHTML = '';
-    livePrice.textContent = "--.--";
+    if (livePrice) livePrice.textContent = "--.--";
+    
+    // Reset Suitability Bars
+    const buyBar = document.getElementById('buy-bar');
+    const sellBar = document.getElementById('sell-bar');
+    const buyPercent = document.getElementById('buy-percent');
+    const sellPercent = document.getElementById('sell-percent');
+    if (buyBar) buyBar.style.width = "0%";
+    if (sellBar) sellBar.style.width = "0%";
+    if (buyPercent) buyPercent.textContent = "0%";
+    if (sellPercent) sellPercent.textContent = "0%";
+    
+    // Reset Probability Meter
+    const probCircle = document.getElementById('prob-circle');
+    const probText = document.getElementById('prob-text');
+    if (probCircle) probCircle.style.strokeDasharray = "0, 100";
+    if (probText) probText.textContent = "--%";
+    
+    // Reset Reasoning
+    const reasoningBox = document.getElementById('suitability-reasoning');
+    if (reasoningBox) reasoningBox.innerHTML = '';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Security: Prevent Right Click
