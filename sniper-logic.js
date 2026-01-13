@@ -741,7 +741,9 @@ function combineLogic(price, morphologyData) {
         tp1 = tp2 = tp3 = sl = 0;
     }
 
-    const rrRatio = sl !== entry ? (Math.abs(tp2 - entry) / Math.abs(entry - sl)).toFixed(1) : "0";
+    const rr1 = sl !== entry ? (Math.abs(tp1 - entry) / Math.abs(entry - sl)).toFixed(1) : "0";
+    const rr2 = sl !== entry ? (Math.abs(tp2 - entry) / Math.abs(entry - sl)).toFixed(1) : "0";
+    const rr3 = sl !== entry ? (Math.abs(tp3 - entry) / Math.abs(entry - sl)).toFixed(1) : "0";
     const winProb = Math.min(95, confluenceScore + 20);
 
     const obPrice = signal === "BUY" ? entry - (vol * 0.8) : entry + (vol * 0.8);
@@ -760,7 +762,8 @@ function combineLogic(price, morphologyData) {
         trend: trendLabel,
         confluenceScore: scaledScore,
         winProb,
-        rrRatio,
+        rrRatio: rr2, // Default shown in dashboard
+        rr1, rr2, rr3,
         entry: { low: entryLow, high: entryHigh, spot: entry },
         tp1, tp2, tp3, sl,
         ob: obPrice,
@@ -782,7 +785,10 @@ function combineLogic(price, morphologyData) {
             structureMsg,
             `Institutional Bias: ${confluenceScore > 50 ? 'Aggressive' : 'Minor'} ${trendDir}`,
             confluenceDetails[0] || "Mapping Macro Liquidity Flows...",
-            `Risk/Reward Ratio: 1:${rrRatio}`,
+            `Risk/Reward Ratio (T2): 1:${rr2}`,
+            `TP1 Milestone: Safety Secured (1:${rr1} RR)`,
+            `TP2 Milestone: Primary Target (1:${rr2} RR)`,
+            `TP3 Milestone: Moon Potential (1:${rr3} RR)`,
             signal === "WAIT" ? `MARKET ANALYZING: ${confluenceScore}% READY` : `ELITE SIGNAL: ${signal} (INSTITUTIONAL EXECUTION)`
         ],
         biasMetrics: {
@@ -838,6 +844,14 @@ function populateDashboard(data) {
     document.getElementById('tp-price').textContent = data.tp2.toFixed(2);
     document.getElementById('tp-3').textContent = data.tp3.toFixed(2);
     document.getElementById('sl-price').textContent = data.sl.toFixed(2);
+
+    // Individual RR Milestones
+    const rr1El = document.getElementById('rr-1');
+    const rr2El = document.getElementById('rr-2');
+    const rr3El = document.getElementById('rr-3');
+    if (rr1El) rr1El.textContent = data.rr1;
+    if (rr2El) rr2El.textContent = data.rr2;
+    if (rr3El) rr3El.textContent = data.rr3;
 
     // SMC Zone Data
     const obEl = document.getElementById('order-block');
