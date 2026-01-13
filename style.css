@@ -885,33 +885,62 @@ header {
 }
 
 @media (max-width: 768px) {
+  /* Layout Stacking */
   #result-dashboard {
     grid-template-columns: 1fr !important;
-    padding: 10px;
-    padding-bottom: 80px;
+    padding: 15px;
+    padding-bottom: 100px; /* Extra room for mobile scroll */
     margin: 10px auto !important;
-  }
-
-  .prob-meter {
-    width: 100px;
-    height: 100px;
   }
 
   .dashboard-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .intelligence-zone {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
   }
 
   .risk-zone {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important; /* Stack on mobile */
-    gap: 20px;
+    flex-direction: column !important;
     padding: 20px !important;
-    margin: 10px 0 !important;
+    gap: 20px;
   }
-  
-  .prob-box, .logic-reasoning, .suitability-box {
+
+  /* Compact Components */
+  .prob-meter {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .prob-box {
     max-width: 100% !important;
-    width: 100% !important;
+  }
+
+  .logic-reasoning {
+    padding: 15px !important;
+  }
+
+  .suitability-box {
+    min-width: 100% !important;
+  }
+
+  /* Header scaling */
+  .logo {
+    font-size: 0.8rem !important;
+  }
+
+  .ticker-wrap {
+    font-size: 0.65rem;
+  }
+
+  /* Scanning Interface */
+  .terminal-log {
+    width: 95%;
+    font-size: 0.65rem;
+    padding: 15px;
   }
 
   .main-content {
@@ -920,13 +949,10 @@ header {
     min-height: 400px;
   }
 
-  .logo {
-    font-size: 0.9rem !important;
-  }
-
   .action-btn {
     width: 100%;
     padding: 15px !important;
+    font-size: 0.75rem;
   }
 }
 
@@ -1624,21 +1650,47 @@ header {
 }
 
 @media (max-width: 480px) {
+    /* Critical Mobile Compactness */
+    .premium-settings-btn .btn-text {
+        display: none;
+    }
+    
+    .premium-settings-btn {
+        padding: 8px;
+        border-radius: 50%;
+    }
+
+    .header-ticker {
+        display: none; /* Hide ticker on very small screens for cleanliness */
+    }
+
     .execution-zone {
         grid-template-columns: 1fr;
     }
+
+    .stat-card {
+        padding: 12px;
+    }
+
     .stat-card h4 {
         font-size: 0.6rem;
     }
+
     .stat-card .value {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
+
     .suit-item {
-        grid-template-columns: 1fr;
-        gap: 5px;
+        grid-template-columns: 1.2fr 1.5fr 45px;
+        font-size: 0.6rem;
     }
-    .suit-val {
-        text-align: right;
+
+    .logic-reasoning h5 {
+        font-size: 0.7rem;
+    }
+
+    .logic-item {
+        font-size: 0.75rem;
     }
 }
 /* Security Lock Screen & Popup */
