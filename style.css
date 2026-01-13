@@ -309,10 +309,11 @@ header {
   background: rgba(255, 255, 255, 0.02);
 }
 
+
 .execution-zone {
   grid-column: span 12;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 Clean Columns for Entry, TP1, TP2, TP3, SL */
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   margin-bottom: 25px;
 }
