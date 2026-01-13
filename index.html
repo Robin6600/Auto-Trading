@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sniper Trader Pro - Institutional Intelligence</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  </head>
+
+  <body>
+    <div id="license-lock-overlay" class="license-lock-overlay">
+      <div class="lock-card glass-panel">
+        <span class="lock-icon">🔒</span>
+        <h2>SYSTEM LOCKED</h2>
+        <p>Sniper Trader Pro License Required</p>
+        <input
+          type="text"
+          id="main-activation-code"
+          placeholder="ENTER ACTIVATION CODE"
+        />
+        <button id="main-activate-btn" class="active-lock-btn">
+          ACTIVATE SECURE SESSION
+        </button>
+        <p class="contact-info">
+          To get a license, contact developer: <br />
+          <a
+            href="https://www.snipertrader.pro/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >www.snipertrader.pro</a
+          >
+        </p>
+        <div class="device-fingerprint">
+          ID: <span id="display-device-id">----</span>
+        </div>
+      </div>
+    </div>
+    <div id="violation-overlay" class="violation-box hidden">
+        <div class="violation-content">
+            <span class="warning-icon">⚠️</span>
+            <div class="violation-text">
+                <h3>SECURITY VIOLATION</h3>
+                <p>Non-trading image detected. Access restricted.</p>
+            </div>
+            <div class="violation-timer" id="violation-countdown">60:00</div>
+        </div>
+    </div>
+    <div class="security-lock-screen hidden" id="security-screen">
+        <div class="security-popup glass-panel">
+            <span class="security-icon">🛡️</span>
+            <h1>SECURITY PROTOCOL</h1>
+            <p>SCREEN CAPTURE DETECTED OR SESSION INTERRUPTED</p>
+            <div class="security-tag">ESTABLISHING SECURE CONNECTION...</div>
+        </div>
+    </div>
+    <div class="sniper-container">
+        <!-- HEADER -->
+        <header class="glass-panel">
+            <div class="logo">
+                <span class="crosshair-icon">⌖</span> <span id="app-title">SNIPER TRADER</span> <span id="pro-tag"
+                    class="pro-tag-mini trial">TRIAL</span>
+            </div>
+            <div class="header-right">
+                <div class="ticker">
+                    <span id="scan-limit-info" class="limit-badge">SCANS: 1</span>
+                    CURRENT MARKET PRICE: <span id="live-price-header" class="neon-text">--.--</span>
+                </div>
+                <button id="settings-trigger" class="premium-settings-btn">
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">TERMINAL CONFIG</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- LANDING / UPLOAD PORTAL -->
+            <div class="upload-zone glass-panel" id="drop-zone">
+                <input type="file" id="chartInput" accept="image/*" hidden>
+                <div class="upload-content">
+                    <span class="upload-icon">💠</span>
+                    <h2>QUANTUM ENTRY</h2>
+                    <p>DRAG & DROP CHART FOR INSTITUTIONAL VALIDATION</p>
+                    <div class="tech-lines">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <button id="open-camera-btn" class="camera-btn">SCAN WITH CAMERA</button>
+
+                <!-- PERMANENT WARNING BOX -->
+                <div class="home-warning-box">
+                    <div class="warning-header">
+                        <span class="pulse-dot"></span>
+                        <h4>INSTITUTIONAL RISK PROTOCOL</h4>
+                    </div>
+                    <ul class="warning-list">
+                        <li>High-frequency algorithmic analysis is for validation only.</li>
+                        <li>Past institutional performance does not guarantee futher entry success.</li>
+                        <li>Ensure clear visibility of price scales for 100% detection accuracy.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SCANNER OVERLAY -->
+            <div id="scanning-overlay" class="overlay hidden">
+                <div class="scan-container-elite">
+                    <div class="scan-frame glass-panel">
+                        <div class="frame-corner top-left"></div>
+                        <div class="frame-corner top-right"></div>
+                        <div class="frame-corner bottom-left"></div>
+                        <div class="frame-corner bottom-right"></div>
+                        <div class="grid-overlay"></div>
+                        <img id="scan-preview-img" class="scan-bg-image" src="" alt="Scanning...">
+                        <div class="laser-beam"></div>
+                    </div>
+                    <div class="scan-hud-terminal glass-panel">
+                        <div class="terminal-header">
+                            <span>INSTITUTIONAL_CORE_v1.6</span>
+                            <span class="status-pulse"></span>
+                        </div>
+                        <div id="scanning-logs" class="terminal-body">
+                            <!-- Logs will be injected here -->
+                        </div>
+                        <div id="scanning-text" class="hud-status">ANALYZING MARKET STRUCTURE...</div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- RESULT DASHBOARD -->
+        <div id="result-dashboard" class="hidden glass-panel">
+          <div class="dashboard-header">
+            <div class="header-left">
+              <h2>SMC QUANTUM TERMINAL</h2>
+              <span class="cert-badge">INSTITUTIONAL GRADE</span>
+              <div id="detected-trend" class="trend-badge">DETECTING TREND...</div>
+            </div>
+            <div id="trade-signal" class="signal-tag">ANALYZING...</div>
+            <div class="header-right">
+              <span class="label">CURRENT MARKET PRICE</span>
+              <span id="live-price" class="price-ticker">--.--</span>
+            </div>
+          </div>
+
+          <!-- ZONE A: EXECUTION -->
+          <div class="execution-zone">
+            <div class="stat-card glass-panel">
+              <h4>ENTRY ZONE</h4>
+              <span id="entry-range" class="value">0.00 - 0.00</span>
+            </div>
+            <div class="stat-card glass-panel highlight">
+              <h4>TP1 (SAFETY)</h4>
+              <span id="tp-1" class="value">--.--</span>
+            </div>
+            <div class="stat-card glass-panel highlight">
+              <h4>TP2 (TARGET)</h4>
+              <span id="tp-price" class="value">--.--</span>
+            </div>
+            <div class="stat-card glass-panel moon-card">
+              <h4>TP3 (EXTENDED)</h4>
+              <span id="tp-3" class="value">--.--</span>
+            </div>
+            <div class="stat-card glass-panel sl-card">
+              <h4>INVALIDATION</h4>
+              <span id="sl-price" class="value">--.--</span>
+            </div>
+          </div>
+
+          <!-- ZONE B: CONFLUENCE -->
+          <div class="intelligence-zone">
+            <div class="stat-card glass-panel smc-card">
+              <h4>ORDER BLOCK</h4>
+              <span id="order-block" class="value">--.--</span>
+            </div>
+            <div class="stat-card glass-panel smc-card">
+              <h4>FVG GAP</h4>
+              <span id="fvg" class="value">--.--</span>
+            </div>
+            <div class="stat-card glass-panel smc-card">
+              <h4>LIQUIDITY</h4>
+              <span id="liquidity" class="value">--.--</span>
+            </div>
+
+            <div class="details-box glass-panel">
+              <h3><span class="icon">📊</span> Market Flow Analysis</h3>
+              <ul id="pattern-list"></ul>
+            </div>
+          </div>
+
+          <!-- ZONE C: RISK CORE -->
+          <div class="risk-zone glass-panel preview-card">
+            <div class="prob-box">
+              <div class="decorator top-right"></div>
+              <span class="label">CONFLUENCE METER</span>
+              <div id="risk-trend-info" class="risk-trend-label">MAPING TREND...</div>
+              <div id="prob-meter-wrapper" class="prob-meter">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                  <defs>
+                    <linearGradient
+                      id="neonGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop
+                        offset="0%"
+                        style="stop-color: var(--neon-blue); stop-opacity: 1"
+                      />
+                      <stop
+                        offset="100%"
+                        style="stop-color: var(--neon-green); stop-opacity: 1"
+                      />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    class="circle-bg"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                  <path
+                    id="prob-circle"
+                    class="circle"
+                    stroke-dasharray="0, 100"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                  <text x="18" y="20.35" id="prob-text" class="percentage">
+                    --%
+                  </text>
+                </svg>
+              </div>
+            </div>
+            <div class="suitability-box">
+              <div class="suit-item">
+                <span>BUY SUITABILITY</span>
+                <div class="suit-bar-bg">
+                  <div id="buy-bar" class="suit-bar buy" style="width: 0%"></div>
+                </div>
+                <span id="buy-percent" class="suit-val">0%</span>
+              </div>
+              <div class="suit-item">
+                <span>SELL SUITABILITY</span>
+                <div class="suit-bar-bg">
+                  <div id="sell-bar" class="suit-bar sell" style="width: 0%"></div>
+                </div>
+                <span id="sell-percent" class="suit-val">0%</span>
+              </div>
+              <div id="suitability-reasoning" class="logic-reasoning">
+                <!-- Reasoning will be injected here -->
+              </div>
+            </div>
+            <div class="stat-card glass-panel risk-stat">
+              <h4>RR RATIO</h4>
+              <span id="rr-ratio" class="value">1:--</span>
+            </div>
+          </div>
+
+          <!-- ZONE D: MARKET EVIDENCE -->
+          <div class="evidence-zone glass-panel">
+            <h3><span class="icon">📷</span> MARKET EVIDENCE</h3>
+            <div class="evidence-frame">
+              <img id="result-evidence-img" src="" alt="Market Evidence" />
+            </div>
+          </div>
+
+          <div class="dashboard-footer">
+            <button id="reset-btn" class="action-btn">NEW ANALYSIS</button>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Sheikh Rasel Robin SystemV1.6 |
+          <span class="neon-text">Institutional Ready</span> |
+          <a
+            href="https://www.snipertrader.pro/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            >SNIPERTRADER.PRO</a
+          >
+        </p>
+        <img id="uploaded-image" hidden src="" alt="Buffer" />
+      </footer>
+
+      <!-- CAMERA MODAL -->
+      <div id="camera-modal" class="modal hidden">
+        <div class="camera-container glass-panel">
+          <video id="camera-feed" autoplay playsinline></video>
+          <canvas id="camera-canvas" hidden></canvas>
+          <button
+            id="capture-btn"
+            class="capture-btn"
+            title="CAPTURE CHART"
+          ></button>
+          <button id="close-camera-btn" class="close-camera">✕</button>
+        </div>
+      </div>
+
+      <!-- SETTINGS MODAL -->
+      <div id="settings-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+          <div class="logo-section">
+            <h1>SNIPER TRADER <span class="pro-tag">PRO</span></h1>
+            <p>SECURITY & LICENSE SETTINGS</p>
+          </div>
+          <div class="modal-body">
+            <div id="settings-config-area">
+              <label for="activation-code">Security License Code:</label>
+              <input
+                type="text"
+                id="activation-code"
+                placeholder="ENTER SNIPER-PRO CODE"
+              />
+              <button id="activate-license-btn" class="retry-btn">
+                VALIDATE LICENSE
+              </button>
+            </div>
+          </div>
+          <button id="close-settings" class="action-btn full-width">
+            CLOSE SETTINGS
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="sniper-logic.js"></script>
+  </body>
+</html>
